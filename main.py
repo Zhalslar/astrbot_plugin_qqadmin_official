@@ -133,16 +133,14 @@ class QQAdminOfficialPlugin(Star):
     @filter.command("禁言状态")
     @filter.platform_adapter_type(filter.PlatformAdapterType.QQOFFICIAL)
     async def mute_status(self, event: QQOfficialMessageEvent):
-        """Display the current group mute status."""
+        """展当前群的禁言状态"""
         msg = await self.cmd_handlers.get_mute_status(event)
         yield event.plain_result(msg)
 
     @filter.command("禁言")
     @filter.platform_adapter_type(filter.PlatformAdapterType.QQOFFICIAL)
-    async def mute_member(
-        self, event: QQOfficialMessageEvent, seconds: int | None = None
-    ):
         """禁言 <秒数> <@成员>"""
+        seconds = seconds if isinstance(seconds, int) else 60
         msg = await self.cmd_handlers.set_mute_member(event, seconds)
         yield event.plain_result(msg)
         event.stop_event()
@@ -184,8 +182,6 @@ class QQAdminOfficialPlugin(Star):
         return await self.cmd_handlers.set_mute_member(event, seconds)
 
     @llm_tool()
-    async def list_qq_group_join_requests(
-        self, event: QQOfficialMessageEvent
-    ) -> str:
+    async def list_qq_group_join_requests(self, event: QQOfficialMessageEvent) -> str:
         """查询当前 QQ 群的入群申请列表"""
         return await self.join_handler.get_join_requests_content(event)
