@@ -1,0 +1,10 @@
+name: astrbot_plugin_qqadmin_official
+display_name: QQ官方群管
+desc: "适用于QQ官方bot的群管插件，功能包括：禁言、进群审批"
+version: v1.0.0
+author: Zhalslar
+repo: https://github.com/Zhalslar/astrbot_plugin_qqadmin_official
+support_platforms:
+  - qq_official
+  - qq_official_webhook
+astrbot_version: ">=4.27.0"
