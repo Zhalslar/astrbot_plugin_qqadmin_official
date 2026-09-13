@@ -139,8 +139,8 @@ class QQAdminOfficialPlugin(Star):
 
     @filter.command("禁言")
     @filter.platform_adapter_type(filter.PlatformAdapterType.QQOFFICIAL)
+    async def mute_member(self, event: QQOfficialMessageEvent, seconds: int | str = 60):
         """禁言 <秒数> <@成员>"""
-    async def mute_member(self, event: QQOfficialMessageEvent, seconds: int):
         seconds = seconds if isinstance(seconds, int) else 60
         msg = await self.cmd_handlers.set_mute_member(event, seconds)
         yield event.plain_result(msg)
